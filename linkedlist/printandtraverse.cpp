@@ -44,5 +44,7 @@ int main() {
     node3 -> next = node1;
     
 
+    printList(node2);
+
     return 0;
 }
