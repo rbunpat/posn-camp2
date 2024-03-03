@@ -7,6 +7,7 @@
         "xlocinfo": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "array": "cpp"
     }
 }
