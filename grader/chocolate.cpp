@@ -24,8 +24,13 @@ bool isAbleToCombineBoxes(int boxes[], int boxesCount) {
     int halfChocolate = total / 2;
     bool possibleCombination[halfChocolate + 1];
 
-    fill(possibleCombination, possibleCombination + halfChocolate + 1, false);
+    //make all false    
+    for (int i = 0; i <= halfChocolate; i++) {
+        possibleCombination[i] = false;
+    }
+
     possibleCombination[0] = true;
+
     for (int i = 0; i < boxesCount; i++) {
         for (int j = halfChocolate; j >= boxes[i]; j--) {
             possibleCombination[j] = possibleCombination[j] || possibleCombination[j - boxes[i]];
@@ -58,5 +63,6 @@ int main() {
         }
     }
 
+    cout << output.str();
     return 0;
 }
