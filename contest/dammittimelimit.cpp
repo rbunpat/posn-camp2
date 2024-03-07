@@ -2,37 +2,40 @@
 
 using namespace std;
 
-bool isPrime(int num) {
+bool isPrime(long long num) {
     if (num <= 1) 
         return false;
-    for (int i = 2; i * i <= num; ++i) {
+    for (long long i = 2; i * i <= num; ++i) {
         if (num % i == 0)
             return false;
     }
     return true;
 }
 
-int nthPrime(int n) {
-    int count = 0;
-    int number = 1;
+long long nthPrime(long long n, long long memoizedPrimes[], long long& count) {
+    long long number = memoizedPrimes[count - 1] + 1;
     while (count < n) {
+        if (isPrime(number)) {
+            memoizedPrimes[count++] = number;
+        }
         ++number;
-        if (isPrime(number))
-            ++count;
     }
-    return number;
+    return memoizedPrimes[n - 1];
 }
 
 int main() {
-    int start, end;
+    long long start, end;
 
     cin >> start >> end;
 
+    long long memoizedPrimes[end];
+    memoizedPrimes[0] = 2;
+    long long primeCount = 1;
 
-    int primeSum = 0;
+    long long primeSum = 0;
 
-    for (int i = start; i <= end; ++i) {
-        primeSum += nthPrime(i);
+    for (long long i = start; i <= end; ++i) {
+        primeSum += nthPrime(i, memoizedPrimes, primeCount);
     }
 
     cout << primeSum;
