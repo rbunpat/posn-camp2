@@ -22,13 +22,15 @@ int main() {
                 if (currentString[bruh + 4] == ' ') {
                     output << "NO" << endl;
                 } else {
-                    output << "MEOW" << endl;
+                    output << "YES" << endl;
                 }
             }
         }
 
 
     }
+
+    cout << output.str();
 
 
 
