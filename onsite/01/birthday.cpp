@@ -2,8 +2,23 @@
 
 using namespace std;
 
+void displayTable() {
+    int i, j;
+    for (i = 1; i < 32; i *= 2) {
+        int co = 0;
+
+        for (j = 1; j < 32; j *= 2) {
+            co++;
+            cout << co << " ";
+        }
+    }
+}
+
 int main()
 {
+
+
+    displayTable();
     int date = 0;
     bool birthdayTable[5];
 
