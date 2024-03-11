@@ -3,22 +3,33 @@
 using namespace std;
 
 int main() {
-    long long int input;
-    long long int i, j;
-    long long int total = 0;
-    cin >> input;
+    int n, m;
+    cin >> n >> m;
 
-    for (i = input; i > 0; i--) {
-        for (j = i; j > 0; j--) {
-            if (j % 2 == 0) {   
-                total = total + j;
-                cout << j << endl;
-            }
+    vector<bool> visited(n + 1, false);
+
+    int k = 1, j = 1, count = 0;
+
+    while (count != n) {
+        if (k > m) k = 1;
+        if (j > n) j = 1;
+
+        if (visited[j]) {
+            j++;
+            continue;
         }
+
+        if (k == m) {
+            cout << j << ' ';
+            visited[j] = true;
+            count++;
+        }
+
+        k++;
+        j++;
     }
 
-    cout << total;
-
+    cout << endl;
 
     return 0;
 }

@@ -3,31 +3,27 @@
 using namespace std;
 
 int main() {
-    long long int cupsRequired;
-    long long int daysCount = 0;
-    long long int printersCount = 1;
+    int bruh;
+    cin >> bruh;
 
-    cin >> cupsRequired;
+    unsigned long long int currentPrinterCount = 1;
 
-    while (cupsRequired > 0) {
+    unsigned long long int printedPieces = 0;
 
-        if (cupsRequired == 1) {
-            cout << 1;
-            return 0;
-        }
-        
-        if (printersCount >= cupsRequired) {
-            //just print the cup lol
-            daysCount++;
-            break;
+    unsigned long long int daysTaken = 0;
+
+    while (printedPieces < bruh) {
+        if (currentPrinterCount < (bruh / 2)) {
+            currentPrinterCount += currentPrinterCount;
+            // daysTaken++;
         } else {
-            daysCount++;
-            cupsRequired = cupsRequired - printersCount + 1;//cuz one printer is already used to print another printer
-            printersCount++;
+           printedPieces += currentPrinterCount;
         }
+
+        daysTaken++;
     }
 
-    cout << daysCount;
+    cout << daysTaken;
 
     return 0;
 }
