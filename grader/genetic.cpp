@@ -6,15 +6,15 @@ int main() {
     string genA, genB;
     cin >> genA >> genB;
 
-    int matchCount;
+    unsigned long long int matchCount;
 
-    for (int i = 0; i < genA.length(); i++) {
+    for (unsigned long long int i = 0; i < genA.length(); i++) {
         if (genA[i] == genB[i]) {
             matchCount += 1;
         }
     }
 
-    int percentage = (matchCount * 100) / genA.length();
+    unsigned long long int percentage = (matchCount * 100) / genA.length();
 
     // cout << percentage;
 
