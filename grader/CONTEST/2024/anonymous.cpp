@@ -2,54 +2,49 @@
 
 using namespace std;
 
-int primeLessThanNumber(unsigned long long int num) {
-    if (num <= 2) {
-        return 1;
-    }
-
-    vector<bool> isPrime(num);
-
-    for (int i = 0; i < num; ++i) {
-        isPrime[i] = true;
-    }
-
-    isPrime[0] = false;
-    isPrime[1] = false;
-
-    for (unsigned long long int p = 2; (p * p) < num; ++p) {
-        if (isPrime[p]) {
-            for (int i = p * p; i < num; i += p)
-                isPrime[i] = false;
-        }
-    }
-
-    for (unsigned long long int i = (num - 1); i >= 2; --i) {
-        if (isPrime[i]) {
-            return i;
-        }
-    }
-
-    return 1;
-}
+bitset <(int) 2e8+10> isPrime;
+vector <int> primes;
 
 int main() {
+    stringstream output;
 
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-    unsigned long long int n;
-    cin >> n;
+    primes.push_back(2);
 
+    for ( long long int i = 3; i < 2e8+10; i += 2) {
+        if (isPrime[i]) {
+            continue;
+        }
+        primes.push_back(i);
 
-    for (unsigned long long int i = 0; i < n; i++) {
-        unsigned long long int num;
-        cin >> num;
-
-        unsigned long long int result = primeLessThanNumber(num);
-
-        cout << result << endl;
-
+        for ( long long int j = i * i; j < 2e8 + 10; i += (i << 1)) {
+            isPrime[j] = true;
+        }
     }
 
+    int n;
+    cin >> n;
     
+    while (n--) {
+        int input;
+        cin >> input;
+
+        int ans;
+        ans = upper_bound(primes.begin(), primes.end(), input) - primes.begin() - 1;
+
+        if (primes[ans] == input) {
+            output << ans + 1 << endl;
+        } else {
+            output << primes[ans] << endl;
+        }
+
+    }
+    
+
+    cout << output.str();
 
     return 0;
 }
