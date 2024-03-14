@@ -1,65 +1,75 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-int main() {
-    string checkString = "meow";
+bool isValidString(int index, string input)
+{
+    const string checkString = "meow";
+
+    for (int i = 0; i < 4; ++i)
+    {
+        if (index + i >= input.length() || input[index + i] != checkString[i])
+            return false;
+    }
+
+    return true;
+}
+
+int main()
+{
+    const string checkString = "meow";
     string input;
+
+    stringstream output;
+
+    int index;
+    int n;
 
     bool isMeow = true;
     bool isM = false;
 
-    int n, index;
     cin >> n >> ws;
 
-    while (n--) {
-
+    while (n--)
+    {
         getline(cin, input);
 
         index = 0;
-        isMeow = true;
+        isMeow = 1;
 
-        while (index < input.length() && isMeow) {
-            if (input[index]  == ' ') {
+        while (index < input.length() && isMeow)
+        {
+            if (input[index] == ' ')
+            {
                 index += 1;
                 continue;
             }
 
             isM = input[index] == 'm';
 
-            while (index < input.length() && input[index] != ' ' && isM && isMeow) {
-                for (int i = 0; i < 4; i++) {
-                    if ((index + i) >= input.length() || input[index + i] != checkString[i]) {
-                        isM = false;
-                        break;
-                    } else {
-                        isM = true;
-                        break;
-                    }
-                }
-
+            while (index < input.length() && input[index] != ' ' && isM && isMeow)
+            {
+                isM = isValidString(index, input);
                 if (isM) {
                     index += 4;
-                    break;
                 }
             }
 
-
-            if (isM) {
-                cout << "YES" << endl;
-                isMeow = false;
+            if (isM)
+            {
+                output << "YES" << endl;
+                isMeow = 0;
             }
 
             while (index < input.length() && input[index] != ' ') {
                 index += 1;
-            }  
+            }
         }
-
         if (isMeow) {
-            cout << "NO" << endl;
+            output << "NO" << endl;
         }
     }
 
+    cout << output.str();
 
     return 0;
 }
