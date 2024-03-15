@@ -3,30 +3,66 @@
 using namespace std;
 
 int main() {
-    int testCase;
-    cin >> testCase;
-    int queryCount;
-    cin >> queryCount;
+    int count;
+    cin >> count;
 
-    stack<int> st;
+    stringstream output;
 
-    for (int i = 0; i < queryCount; i++) {
-        char query;
-        cin >> query;
+    for (int i = 0; i < count; i++) {
+        int n;
+        cin >> n;
 
-        if (query == 'a') {
-            int value;
-            cin >> value;
-            st.push(value);
-        } else if (query == 'b') {
-            st.pop();
-            cout << st.top() << endl;
-        } else if (query == 'd') {
-            cout << st.top() << endl;
-        } else if (query == 'c') {
-            cout << st.size() << endl;
+        queue<int> bruh;
+
+        for (int j = 0; j < n; j++ ) {
+            char cmd;
+            cin >> cmd;
+
+            if (cmd == 'a') {
+                int x;
+                cin >> x;
+
+                bruh.push(x);
+            }
+
+            if (cmd == 'b') {
+                if (!bruh.empty()) {
+                    output << bruh.front() << " ";
+                    bruh.pop();
+                } else {
+                    output << "-1" << " ";
+                }
+            }
+
+            if (cmd == 'c') {
+                output << bruh.size() << " ";
+            }
+
+            if (cmd == 'd') {
+                if (!bruh.empty()) {
+                    output << bruh.front() << " ";
+                } else {
+                    output << "-1" << " ";
+                }
+            }
+
+            if (cmd == 'e') {
+                if (!bruh.empty()) {
+                    output << bruh.back() << " ";
+                } else {
+                    output << "-1" << " ";
+                }
+            }
+            
         }
-    }
+
+        output << endl;
+
+     }
+
+    cout << output.str();
+
+
 
     return 0;
-}
+}   
