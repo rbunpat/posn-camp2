@@ -51,13 +51,23 @@ int main() {
             }
 
             if (cmd == 4) {
+
                 if (!bruh.empty()) {
                     bruh.pop_back();
                 }
 
-                for (auto it = bruh.begin(); it != bruh.end(); it++) {
-                    output << *it << " ";
+                if (!bruh.empty()) {
+                    for (auto it = bruh.begin(); it != bruh.end(); it++) {
+                        output << *it << " ";
+                    }
+                } else {
+                    output << "-1" << " ";
                 }
+                
+
+
+
+
             }
 
             if (cmd == 5) {
@@ -104,9 +114,10 @@ int main() {
                     output << "-1" << " ";
                 }
             }
+            output << endl;
         }
 
-        output << endl;
+        
     }
 
     cout << output.str();
