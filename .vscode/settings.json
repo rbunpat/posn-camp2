@@ -96,5 +96,6 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
-    "discord.enabled": false
+    "discord.enabled": false,
+    "C_Cpp.errorSquiggles": "enabled"
 }
