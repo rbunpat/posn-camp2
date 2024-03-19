@@ -4,21 +4,25 @@ using namespace std;
 
 int row, col;
 
-int paths[100000][100000];
+int paths[101][101];
 
 int modAns = 1e9 + 7;
 
 
 int countPaths(int i, int j) {
-    if (i == 1 && j == 1) {
-        return 1;
-    }
 
-    if (i < 1 || j < 1) {
+    if (i < 0 || j < 0) {
         return 0;
     }
 
-    if ()
+    if (paths[i][j] != -1) {
+        return paths[i][j];
+    } else {
+        paths[i][j] = ((countPaths(i - 1, j) % modAns) + (countPaths(i, j - 1) % modAns)) % modAns;
+        return paths[i][j];
+    
+    }
+
 
 
 }
@@ -31,7 +35,11 @@ int main() {
         cin >> row;
         cin >> col;
 
-        cout << countPaths(row, col) << endl;
+        memset(paths, -1, sizeof(paths));
+
+        paths[0][0] = 1;
+
+        cout << countPaths(row - 1, col - 1) << endl;
     }
     
 
